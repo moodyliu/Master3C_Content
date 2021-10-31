@@ -7,6 +7,7 @@
 --
 
 require "UnLua"
+local ObjUtils = require("Utils/ObjUtils")
 -- if WITH_LUA_DEBUG then
 --     require("LuaPanda").start("127.0.0.1",8818)
 -- end
@@ -25,7 +26,7 @@ function BP_MGameMode_C:ReceiveBeginPlay()
         require "LuaPanda"
         -- LuaPanda.start("127.0.0.1",8818)
     end
-    print('hello world!')
+
 end
 
 --function BP_MGameMode_C:ReceiveEndPlay()
