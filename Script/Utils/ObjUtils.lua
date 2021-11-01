@@ -21,4 +21,9 @@ function ObjUtils:GetObject(WorldContext, Path)
     return self:GetLoadSubSystem(WorldContext):GetObject(Path)
 end
 
+function ObjUtils:LoadObjsAsync(WorldContext, InPaths, InCallback)
+    local SubSystem = self:GetLoadSubSystem(WorldContext)
+    SubSystem:LoadObjsAsync(InPaths, {WorldContext, InCallback})
+end
+
 return ObjUtils
