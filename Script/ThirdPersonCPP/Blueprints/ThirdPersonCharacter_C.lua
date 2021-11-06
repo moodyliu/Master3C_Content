@@ -9,6 +9,7 @@
 require "UnLua"
 local CommonUtils = require("Utils.CommonUtils")
 local ObjUtils = require("Utils/ObjUtils")
+local DataUtils = require("Utils/DataUtils")
 -- if WITH_LUA_DEBUG then
 --     require("LuaPanda").start("127.0.0.1",8818)
 -- end
@@ -29,12 +30,17 @@ function ThirdPersonCharacter_C:ReceiveBeginPlay()
     -- end
     -- ObjUtils:LoadObjAsync(self, "StaticMesh'/Game/Geometry/Meshes/1M_Cube.1M_Cube'", callback)
 
-    local ObjsCallback = function()
-        print("hello objs callback")
-    end
-    local Paths = UE4.TArray(UE4.FString)
-    Paths:Add("StaticMesh'/Game/Geometry/Meshes/1M_Cube.1M_Cube'")
-    ObjUtils:LoadObjsAsync(self, Paths, ObjsCallback)
+    local RowKey = NewObject(UE4.UMUDSaveGameSlotKey, self)
+    RowKey.SlotKey = 1
+    -- local SaveGame = NewObject(UE4.UM3CTestSaveGame, self)
+    -- SaveGame.TestKey = 100
+    -- local NewData = NewObject(UE4.UMUDSaveGameData, self)
+    -- NewData.SaveGameData = SaveGame
+    -- local Result = DataUtils:SetData(self, "Test", RowKey, NewData)
+    -- print("Set Data Successful!", Result)
+
+    local NewData = DataUtils:GetData(self, "Test", RowKey)
+    print(NewData.SaveGameData.TestKey)
 end
 
 --function ThirdPersonCharacter_C:ReceiveEndPlay()

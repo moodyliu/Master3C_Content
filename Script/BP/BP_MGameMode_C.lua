@@ -26,7 +26,8 @@ function BP_MGameMode_C:ReceiveBeginPlay()
         require "LuaPanda"
         -- LuaPanda.start("127.0.0.1",8818)
     end
-
+    local PC = UE4.UGameplayStatics.GetPlayerController(self, 0)
+    PC.bShowMouseCursor = 1
 end
 
 --function BP_MGameMode_C:ReceiveEndPlay()
